@@ -7,10 +7,9 @@ const config = {
 };
 
 
-var Android = (function(){
+var iOS = (function(){
     return{
-        start: (callback)=>{
-            console.log("triggered start")
+        start: (callback)=>{ // callback = name of the method to invoke from iOS native code
             window.webkit.messageHandlers.start.postMessage(callback);
         },
         stop: ()=>{
@@ -31,16 +30,19 @@ const ptt = (function() {
     const recorder = {
         start: ()=>{
             ws.send('started');
-            Android.start('ptt.onDataReceived');
+            iOS.start('ptt.onDataReceived');
         },
         stop: ()=>{
-            Android.stop();
+            iOS.stop();
             setTimeout(()=>{
                 ws.send('stopped');
             }, 500);
         }
     };
 
+    /**
+     * Invoked by iOS native code, whenever audio data is available
+     */
     function onDataReceived(stringArray){
         var byteArray = JSON.parse(stringArray);
         var arraybuffer = new Int8Array(byteArray).buffer;
@@ -114,6 +116,7 @@ const ptt = (function() {
                     }
 
                     ws.onmessage = (e)=>{
+                      
                         if(e.data == 'ping'){
                             ws.send('pong');
                         }else if(e.data == 'started'){

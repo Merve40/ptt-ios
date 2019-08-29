@@ -8,27 +8,27 @@
 
 import UIKit
 import WebKit
+import AVFoundation
 
 class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler{
 
     
-    @IBOutlet var containerView: UIView!
     var webView:WKWebView!
+    var audioStreamer:AudioStreamer!
     
     let eventNames = ["start", "stop"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+                
         //let url:URL! = URL(string: "https://ptt-demo.herokuapp.com")
-        
         let html = Bundle.main.path(forResource: "index", ofType: "html")
         let url = URL(fileURLWithPath: html!)
         let request = URLRequest(url: url)
         
         webView.load(request)
+        audioStreamer = AudioStreamer(forWebView: webView)
     }
     
     override func loadView() {
@@ -51,11 +51,10 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
         view = webView
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
+    /*
+     Utility method for handling methods in WebView
+     */
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
         guard let response = navigationResponse.response as? HTTPURLResponse,
@@ -74,13 +73,20 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
         decisionHandler(.allow)
     }
     
+    /*
+     This method is triggered from javascript (see api.js)
+     */
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("hello")
-        if let contentBody = message.body as? String {
-            if message.name == "start"{
-                print("called start with callback = "+contentBody)
-            }else if message.name == "stop"{
+        if let callback = message.body as? String {
+            if message.name == "start"{ // start recording audio
+                print("called start with callback = "+callback)
+                
+                audioStreamer.start(cb: callback)
+                
+            }else if message.name == "stop"{ // stop recording audio
                 print("called stop")
+                
+                audioStreamer.stop()
             }
         }
     }

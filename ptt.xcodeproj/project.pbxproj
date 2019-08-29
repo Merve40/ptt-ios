@@ -16,8 +16,7 @@
 		B738AC68231169290098E512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B738AC67231169290098E512 /* Assets.xcassets */; };
 		B738AC6B231169290098E512 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B738AC69231169290098E512 /* LaunchScreen.storyboard */; };
 		B7730FA423118F9C00F7694A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7730FA323118F9C00F7694A /* WebKit.framework */; };
-		B7803FEE2312FC0D0020A493 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7803FED2312FC0D0020A493 /* Storyboard.storyboard */; };
-		B7FE98932312A4B1001BA21B /* WkWebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE98922312A4B1001BA21B /* WkWebViewWrapper.swift */; };
+		B7803FF0231438A70020A493 /* AudioStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7803FEF231438A70020A493 /* AudioStreamer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +32,7 @@
 		B738AC6A231169290098E512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B738AC6C231169290098E512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7730FA323118F9C00F7694A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		B7803FED2312FC0D0020A493 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		B7FE98922312A4B1001BA21B /* WkWebViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WkWebViewWrapper.swift; sourceTree = "<group>"; };
+		B7803FEF231438A70020A493 /* AudioStreamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStreamer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,12 +73,11 @@
 				B7182E402311AA0300A083C1 /* index.js */,
 				B738AC60231169290098E512 /* AppDelegate.swift */,
 				B738AC62231169290098E512 /* ViewController.swift */,
-				B738AC64231169290098E512 /* Main.storyboard */,
 				B738AC67231169290098E512 /* Assets.xcassets */,
+				B738AC64231169290098E512 /* Main.storyboard */,
 				B738AC69231169290098E512 /* LaunchScreen.storyboard */,
 				B738AC6C231169290098E512 /* Info.plist */,
-				B7FE98922312A4B1001BA21B /* WkWebViewWrapper.swift */,
-				B7803FED2312FC0D0020A493 /* Storyboard.storyboard */,
+				B7803FEF231438A70020A493 /* AudioStreamer.swift */,
 			);
 			path = ptt;
 			sourceTree = "<group>";
@@ -162,7 +159,6 @@
 				B7182E3F2311A9DB00A083C1 /* index.html in Resources */,
 				B738AC68231169290098E512 /* Assets.xcassets in Resources */,
 				B738AC66231169290098E512 /* Main.storyboard in Resources */,
-				B7803FEE2312FC0D0020A493 /* Storyboard.storyboard in Resources */,
 				B7182E432311AA3000A083C1 /* api.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,8 +171,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B738AC63231169290098E512 /* ViewController.swift in Sources */,
-				B7FE98932312A4B1001BA21B /* WkWebViewWrapper.swift in Sources */,
 				B738AC61231169290098E512 /* AppDelegate.swift in Sources */,
+				B7803FF0231438A70020A493 /* AudioStreamer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

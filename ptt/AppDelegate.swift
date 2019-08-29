@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        if(audioSession.responds(to: #selector(AVAudioSession.requestRecordPermission(_:)))){
+            
+            AVAudioSession.sharedInstance().requestRecordPermission({(granted: Bool)-> Void in
+                
+                if granted{
+                   
+                    do{
+                        try audioSession.setCategory(AVAudioSessionCategoryRecord)
+                        try audioSession.setActive(true)
+                    }catch{
+                        print("audioSession: setting categoy failed!")
+                    }
+                    
+                }else{
+                    print("permission for microphone not granted!")
+                }
+                
+            })
+            
+        }else{
+            do{
+                try audioSession.setCategory(AVAudioSessionCategoryRecord)
+            }catch{
+                print("audioSession: setting categoy failed!")
+            }
+        }
+        
+        
         return true
     }
 
